@@ -1,4 +1,4 @@
-package a;
+package a.primitives;
 
 public class Demo2 {
 

@@ -1,4 +1,4 @@
-package a;
+package a.primitives;
 /*
  * coment line 1
  * coment line 2

@@ -17,12 +17,11 @@ public class Demo3Method {
 		double a = 10;
 		double b = 15;
 		System.out.println(sum((int) a, (int) b));
-		
-		
 
 	}
 
 	// method definition
+
 	public static int sum(int a, int b) {
 		return a + b;
 	}

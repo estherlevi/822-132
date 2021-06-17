@@ -1,4 +1,4 @@
-package b;
+package bDemos;
 
 public class Point {
 
@@ -17,6 +17,15 @@ public class Point {
 		// call other ctor in this class
 		this(val, val);
 		System.out.println("Point(int val)");
+	}
+
+	public void moveRight() {
+		x++;
+	}
+
+	// method overload
+	public void moveRight(int steps) {
+		x += steps;
 	}
 
 	public int getX() {

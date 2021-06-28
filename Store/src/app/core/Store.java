@@ -29,7 +29,27 @@ public class Store {
 				items[i] = null;
 				break;
 			}
-		} 
-	} 
+		}
+	}
+
+	public void removeItem(Item item) {
+		for (int i = 0; i < items.length; i++) {
+			Item currentItem = items[i];
+			if (currentItem.equals(item)) {
+				items[i] = null;
+				break;
+			}
+		}
+	}
+
+	public void printItems() {
+		System.out.println("store items =========");
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] != null) {
+				System.out.println(items[i]);
+			}
+		}
+		System.out.println("=====================");
+	}
 
 }

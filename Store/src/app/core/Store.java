@@ -52,4 +52,23 @@ public class Store {
 		System.out.println("=====================");
 	}
 
+	public Item getItem(int itemId) {
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] != null && items[i].getId() == itemId) {
+				return items[i];
+			}
+		}
+		return null;
+	}
+
+	public void raiseEntireStore(double percent) {
+		double rate = 1 + percent / 100;
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] != null) {
+				Item item = items[i];
+				item.setPrice(item.getPrice() * rate);
+			}
+		}
+	}
+
 }

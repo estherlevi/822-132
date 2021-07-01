@@ -18,9 +18,11 @@ public class Car {
 	private static String factoryAddress = "Tel Aviv";
 	private static String factoryPhone = "03-4459867";
 	private static int counter;
+	// constants
+	public static final int MAX_SPEED = 110;
 
 	// instance variables
-	private int number;
+	private final int number;
 	private int speed;
 	private String color;
 
@@ -48,9 +50,6 @@ public class Car {
 		return this.number;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
 
 	public int getSpeed() {
 		return speed;

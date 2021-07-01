@@ -18,8 +18,12 @@ public class CarTest {
 		Car car3 = new Car(333, 90, "red");
 		System.out.println("number of cars made: " + Car.getCounter()); 
 		
-		System.out.println(car1.getColor());
-		System.out.println(car2.getColor());
-		System.out.println(car3.getColor());
+		System.out.println(car1.getNumber() + ", " + car1.getColor());
+		System.out.println(car2.getNumber() + ", " + car2.getColor());
+		System.out.println(car3.getNumber() + ", " + car3.getColor());
+		
+		System.out.println("cars max speed: " + Car.MAX_SPEED);
+		
+		System.out.println("PI = " + Math.PI);
 	}
 }

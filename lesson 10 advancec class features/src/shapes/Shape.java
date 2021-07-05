@@ -9,8 +9,10 @@ public abstract class Shape {
 		this.color = color;
 	}
 	
+	// abstract method
 	public abstract double getArea();
 
+	// concrete methods
 	public String getColor() {
 		return color;
 	}

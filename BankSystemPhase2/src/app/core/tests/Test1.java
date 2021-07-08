@@ -24,7 +24,20 @@ public class Test1 {
 		
 		System.out.println(client.getBalance());
 		
-		System.out.println(client.getAccount(20));
+		System.out.println(client.getAccount(0));
+		
+		client.autoUpdateAccounts();
+		
+//		client.removeAccount(3001);
+//		client.removeAccount(4001);
+		
+		client.deposit(100);
+		client.withdraw(50);
+		
+		System.out.println("client's balance: " + client.getBalance());
+		System.out.println("client's fortune: " + client.getFortune());
+		
+		
 
 	}
 

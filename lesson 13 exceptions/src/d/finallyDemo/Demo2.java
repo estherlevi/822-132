@@ -16,6 +16,7 @@ public class Demo2 {
 			System.out.println(x);
 		} catch (NumberFormatException e) {
 			System.out.println("This is not a number: " + e.getMessage());
+			e.printStackTrace(System.out);
 			return;
 		} catch (ArithmeticException e) {
 			System.out.println("ArithmeticException: " + e.getMessage());

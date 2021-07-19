@@ -31,6 +31,17 @@ public class Demo3Map {
 				System.out.println(def);
 			} else {
 				System.out.println("the word " + word + " is not in the dictionary");
+				System.out.println("would you like to add the word? y/n");
+				String input = sc.nextLine();
+				if (input.equalsIgnoreCase("y")) {
+					System.out.print("enter definition: ");
+					def = sc.nextLine();
+					map.put(word, def);
+					System.out.println(word + " was add to dictionary");
+				} else {
+					System.out.println(word + " was not added");
+				}
+
 			}
 		}
 		System.out.println("Bye");

@@ -1,8 +1,9 @@
 package a;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
+import utilities.CollectionUtil;
 
 public class Demo3 {
 
@@ -14,28 +15,20 @@ public class Demo3 {
 		list.add(new Person(103, "Amir", 5));
 
 		System.out.println("insert order:");
-		print(list);
+		CollectionUtil.print(list);
 
 		System.out.println("natural order (id):");
 		list.sort(null);
-		print(list);
+		CollectionUtil.print(list);
 
 		System.out.println("other order (age):");
 		list.sort(new PersonAgeComparator());
-		print(list);
+		CollectionUtil.print(list);
 
 		System.out.println("other order (name):");
 		list.sort(new PersonNameComparator());
-		print(list);
+		CollectionUtil.print(list);
 
-	}
-
-	private static void print(Collection<?> col) {
-		System.out.println("=====================");
-		for (Object e : col) {
-			System.out.println(e);
-		}
-		System.out.println("=====================");
 	}
 
 }

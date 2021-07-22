@@ -36,14 +36,15 @@ public class Demo1 {
 
 		{ // Person natural order is Person.id
 			Set<Person> set = new TreeSet<>();
-			set.add(new Person(102, "Dal", 30));
+			set.add(new Person(102, "Dan", 30));
 			set.add(new Person(101, "Tova", 25));
 			set.add(new Person(103, "Amir", 5));
 			System.out.println(set);
 		}
 		{ // Person other order: Person.name
-			Set<Person> set = new TreeSet<>();
-			set.add(new Person(102, "Dal", 30));
+			PersonNameComparator nameComparator = new PersonNameComparator();
+			Set<Person> set = new TreeSet<>(nameComparator);
+			set.add(new Person(102, "Dan", 30));
 			set.add(new Person(101, "Tova", 25));
 			set.add(new Person(103, "Amir", 5));
 			System.out.println(set);

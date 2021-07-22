@@ -49,6 +49,14 @@ public class Demo1 {
 			set.add(new Person(103, "Amir", 5));
 			System.out.println(set);
 		}
+		{ // Person other order: Person.age
+			PersonAgeComparator ageComparator = new PersonAgeComparator();
+			Set<Person> set = new TreeSet<>(ageComparator);
+			set.add(new Person(102, "Dan", 30));
+			set.add(new Person(101, "Tova", 25));
+			set.add(new Person(103, "Amir", 5));
+			System.out.println(set);
+		}
 
 	}
 

@@ -10,7 +10,7 @@ public class EmployeeStatistics {
 	 * @return the average
 	 * @throws RuntimeException if the list is empty
 	 */
-	public static double averageSalary(List<Employee> employees) throws RuntimeException {
+	public static double averageSalary(List<? extends Employee> employees) throws RuntimeException {
 		double sum = 0;
 		int n = 0;
 		for (Employee currEmp : employees) {
@@ -27,7 +27,7 @@ public class EmployeeStatistics {
 		}
 	}
 
-	public static int getNumberOfEmployees(List<Employee> employees) {
+	public static int getNumberOfEmployees(List<? extends Employee> employees) {
 		int n = 0;
 		for (Employee currEmp : employees) {
 			if (currEmp != null) {
@@ -37,7 +37,7 @@ public class EmployeeStatistics {
 		return n;
 	}
 
-	public static int getNumberOfEmployees(List<Employee> employees, String department) {
+	public static int getNumberOfEmployees(List<? extends Employee> employees, String department) {
 		int n = 0;
 		for (Employee currEmp : employees) {
 			if (currEmp != null && currEmp.getDepartment().equals(department)) {

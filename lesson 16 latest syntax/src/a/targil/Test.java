@@ -1,6 +1,7 @@
 package a.targil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Test {
@@ -11,10 +12,30 @@ public class Test {
 	private static String[] departments = { "Legal", "Sales", "Tecnical", "Customers" };
 
 	public static void main(String[] args) {
+		// get a list of random employees
+		List<Employee> list = getRandomEmployees(7);
+		// print the list
+		print(list);
+		// print statistic data using the EmployeeStatistics class
+		System.out.println("total employees: " + EmployeeStatistics.getNumberOfEmployees(list));
+		System.out.println("total legal employees: " + EmployeeStatistics.getNumberOfEmployees(list, "Legal"));
+		System.out.println("total average: " + EmployeeStatistics.averageSalary(list));
+	}
+
+	public static void print(Collection<Employee> list) {
+		System.out.println("===== list =====");
+		for (Employee employee : list) {
+			System.out.println(employee);
+		}
+		System.out.println("=====------=====");
+	}
+
+	public static List<Employee> getRandomEmployees(int size) {
 		List<Employee> employees = new ArrayList<Employee>();
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < size; i++) {
 			employees.add(getRandomEmployee());
 		}
+		return employees;
 	}
 
 	public static Employee getRandomEmployee() {

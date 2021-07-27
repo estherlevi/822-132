@@ -26,7 +26,7 @@ public class Demo4Targil {
 		
 		// characters - used for text
 		char c1 = 'A';
-		char c2 = '÷';
+		char c2 = 'ï¿½';
 		char c3 = '1';
 		char c4 = '.';
 		char c5 = ' ';

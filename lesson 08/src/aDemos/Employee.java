@@ -6,7 +6,7 @@ public class Employee {
 	private String name;
 	private double salary;
 
-	// constructors - брай
+	// constructors - пїЅпїЅпїЅпїЅ
 	public Employee() {
 
 	}

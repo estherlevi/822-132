@@ -15,7 +15,7 @@ public class Demo1 {
 	public static void main(String[] args) {
 		System.out.println("Hello World!"); // comment
 		
-		// expression [10 + 5] - αιθει
+		// expression [10 + 5] - οΏ½οΏ½οΏ½οΏ½οΏ½
 		System.out.println(10 + 5);
 		
 		{

@@ -13,105 +13,77 @@ public class App2 {
 
 	public static void main(String[] args) {
 
+		// create a country
 		Country country = new Country();
-
+		// add highways
 		country.addHighway(getRandomHighway());
 		country.addHighway(getRandomHighway());
 		country.addHighway(getRandomHighway());
 
-		// number of cars in country
-		System.out.println("number of cars in country: " + country.getNumberOfCars());
-
-		// average speed of all cars in the country
-		double avgSpeedAllCarsInCountry;
+		// define needed variables
+		double speedSumAllCarsInCountry = 0;
 		int numOfAllCarsInTheCountry = 0;
+		int maxSpeed = Car.MIN_SPEED;
+		Highway busiestHighway = country.getHighways()[0];
+		Highway fastestHighway = country.getHighways()[0];
 
+		// iterate over the highways in the country
 		for (Highway highway : country.getHighways()) {
 			if (highway != null) {
-				// number of cars on each highway
-				System.out.println(highway.getName() + ": " + highway.getNumberOfCars());
-				// average speed of all cars in the country
-				numOfAllCarsInTheCountry += highway.getNumberOfCars();
-				for (Car car : args) {
-
+				// print the number of cars on each highway (using toString method)
+				System.out.print("Highway=" + highway.getName());
+				System.out.print(", numberOfCars=" + highway.getNumberOfCars());
+				System.out.println(", averageSpeed=" + highway.getAvgSpeed());
+				// looking for the busiest highway
+				if (highway.getNumberOfCars() > busiestHighway.getNumberOfCars()) {
+					busiestHighway = highway;
 				}
-
-			}
-		}
-
-		// max speed of all cars in the country
-		int max = getMaxSpeedOfCarsInCountry(country);
-		System.out.println("max speed of all cars in the country: " + max);
-
-		// most busy highway in the country
-		System.out.println("most busy highway in country: " + getMostBusyHighway(country));
-		// fastest highway in the country
-		System.out.println("fastest highway in country: " + getFastestHighway(country));
-	}
-
-	private static Highway getMostBusyHighway(Country country) {
-		Highway buisyHighway = country.getHighways()[0];
-		// int numOfCars = 0;
-		for (int i = 1; i < country.getHighways().length; i++) {
-			Highway highway = country.getHighways()[i];
-			if (highway != null) {
-				if (highway.getNumberOfCars() > buisyHighway.getNumberOfCars()) {
-//					numOfCars = highway.getNumberOfCars();
-					buisyHighway = highway;
+				// looking for the fastest highway
+				if (highway.getAvgSpeed() > busiestHighway.getAvgSpeed()) {
+					fastestHighway = highway;
 				}
-			}
-		}
-		return buisyHighway;
-	}
-
-	private static int getMaxSpeedOfCarsInCountry(Country country) {
-		int max = Car.MIN_SPEED;
-		for (Highway highway : country.getHighways()) {
-			if (highway != null) {
+				// calculating average speed of all cars in the country
+				// iterate over the cars on each highway in the country
 				for (Car car : highway.getCars()) {
 					if (car != null) {
-						if (car.getSpeed() > max) {
-							max = car.getSpeed();
+						speedSumAllCarsInCountry += car.getSpeed();
+						numOfAllCarsInTheCountry++;
+						// looking for the speed of the fastest car in the country
+						if (car.getSpeed() > maxSpeed) {
+							maxSpeed = car.getSpeed();
 						}
 					}
 				}
+
 			}
 		}
-		return max;
+
+		System.out.println("=====================");
+
+		// calculate the average speed of all cars in the country
+		double avgApeedAllCarsInCountry = speedSumAllCarsInCountry / numOfAllCarsInTheCountry;
+
+		//
+		// number of cars in country
+		System.out.println("total number of cars in the country: " + country.getNumberOfCars());
+
+		// average speed of all cars in the country
+		System.out.println("average speed of all cars in country: " + avgApeedAllCarsInCountry);
+
+		// max speed of all cars in the country
+		System.out.println("speed of fastest car in the country: " + maxSpeed);
+
+		// most busy highway in the country
+		System.out.print("busiestHighway=" + busiestHighway.getName());
+		System.out.println(", numberOfCars=" + busiestHighway.getNumberOfCars());
+
+		// fastest highway in the country
+		System.out.print("fastestHighway=" + fastestHighway.getName());
+		System.out.println(", avgSpeed=" + fastestHighway.getAvgSpeed());
+
 	}
 
-	private static Highway getFastestHighway(Country country) {
-		double max = Car.MIN_SPEED;
-		Highway fastestHighway = null;
-
-		for (Highway highway : country.getHighways()) {
-			if (highway != null) {
-				if (highway.getAvgSpeed() > max) {
-					max = highway.getAvgSpeed();
-					fastestHighway = highway;
-				}
-			}
-		}
-		return fastestHighway;
-	}
-
-	private static double getAverageSpeedOfCarsInCountry(Country country) {
-		double sum = 0;
-		int counter = 0;
-		for (Highway highway : country.getHighways()) {
-			if (highway != null) {
-				for (Car car : highway.getCars()) {
-					if (car != null) {
-						sum += car.getSpeed();
-						counter++;
-					}
-				}
-			}
-		}
-		double avg = sum / counter;
-		return avg;
-	}
-
+	// method for getting a random highway
 	private static Highway getRandomHighway() {
 		String name = "H" + nextHighwayNumber++;
 		Highway highway = new Highway(name);
@@ -122,7 +94,7 @@ public class App2 {
 		return highway;
 	}
 
-	// add method for getting a random car
+	// method for getting a random car
 	private static Car getRandomCar() {
 		Car car;
 		int number = nextCarNumber++;

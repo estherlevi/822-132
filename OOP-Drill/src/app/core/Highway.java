@@ -67,22 +67,21 @@ public class Highway {
 		return cars;
 	}
 
+	public double getAvgSpeed() {
+		double sum = 0;
+		int c = 0;
+		for (Car car : cars) {
+			if (car != null) {
+				sum += car.getSpeed();
+				c++;
+			}
+		}
+		return sum / c;
+	}
+
 	@Override
 	public String toString() {
 		return "Highway [name=" + name + ", number of cars: " + getNumberOfCars() + "]";
-	}
-
-	public static void main(String[] args) {
-		Highway h1 = new Highway("H1");
-		h1.addCar(new FamilyCar(101, 30));
-		h1.addCar(new FamilyCar(102, 100));
-		System.out.println(h1);
-
-		boolean isRemoved = h1.removeCar(102);
-		System.out.println("removed? " + isRemoved);
-		isRemoved = h1.removeCar(110);
-		System.out.println("removed? " + isRemoved);
-		System.out.println(h1);
 	}
 
 }

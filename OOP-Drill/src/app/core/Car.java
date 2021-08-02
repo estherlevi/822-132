@@ -7,7 +7,7 @@ public abstract class Car {
 	public static final int MIN_SPEED = 0;
 	public static final int MAX_SPEED = 110;
 
-	private int number;
+	private int number; // Car.this.number
 	private int speed; // 0 - 110
 
 	public Car() {
@@ -15,7 +15,7 @@ public abstract class Car {
 
 	public Car(int number, int speed) {
 		super();
-		this.number = number;
+		Car.this.number = number;
 		setSpeed(speed); // the CTOR delegates call to setter (for validation)
 	}
 

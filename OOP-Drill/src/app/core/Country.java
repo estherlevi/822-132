@@ -20,7 +20,7 @@ public class Country {
 
 	public int getNumberOfCars() {
 		int totalCars = 0;
-		for (Highway highway : highways) {
+		for (Highway highway : Country.this.highways) {
 			if (highway != null) {
 				totalCars += highway.getNumberOfCars();
 			}

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Demo3Statement {
+public class Demo8delete {
 
 	public static void main(String[] args) {
 
@@ -14,15 +14,13 @@ public class Demo3Statement {
 		String password = "1234";
 
 		try (Connection con = DriverManager.getConnection(url, user, password)) {
-			// with Statement we can execute SQL commands
 			Statement stmt = con.createStatement();
-			// set the SQL command
-			String sql = "insert into person values(201, 'Avi', 55);";
-
+			String sql = "delete from person where id = 4";
+			stmt.executeUpdate(sql);
+			System.out.println(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

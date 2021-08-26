@@ -2,12 +2,14 @@ package app.core;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 public class Schedualler {
 
 	private List<Task> tasks = new ArrayList<Task>();
+	private SchedulerThread thread = new SchedulerThread();
 
 	public void addTask(Task task) {
 		this.tasks.add(task);
@@ -26,20 +28,67 @@ public class Schedualler {
 	}
 
 	public void displayTasks() {
-		System.out.println("=== tasks =========");
-		for (Task task : tasks) {
-			System.out.println(task);
-		}
-		System.out.println("===================");
+		this.printTasks(this.tasks);
 	}
 
-	public static void main(String[] args) {
-		Schedualler s = new Schedualler();
-		s.addTask(new Task("aaa", LocalDateTime.now().plusHours(2), false));
-		s.addTask(new Task("bbb", LocalDateTime.now().plusHours(3), false));
-		s.addTask(new Task("ccc", LocalDateTime.now().plusHours(5), false));
+	public void displayTueUntilTasks(LocalDateTime deadline) {
+		this.printTasks(this.getAllTaskDue(deadline));
+	}
 
-		s.displayTasks();
+	public Task getTask(int taskId) {
+		for (Task task : tasks) {
+			if (task.id == taskId) {
+				return task;
+			}
+		}
+		return null;
+	}
+
+	public List<Task> getAllTasks() {
+		return this.tasks;
+	}
+
+	public List<Task> getAllTaskDue(LocalDateTime deadline) {
+		List<Task> list = new ArrayList<Task>();
+		for (Task task : this.tasks) {
+			if (task.getDeadline().isBefore(deadline)) {
+				list.add(task);
+			}
+		}
+		return list;
+	}
+
+	public void printTasks(Collection<Task> col) {
+		System.out.println("=== tasks ===========");
+		for (Task task : col) {
+			System.out.println(task);
+		}
+		System.out.println("=== ===== ===========");
+	}
+
+	public void startMonitoringTasks() {
+		thread.start();
+	}
+
+	public void stopMonitoringTasks() {
+		thread.interrupt();
+	}
+
+	private class SchedulerThread extends Thread {
+		@Override
+		public void run() {
+			while (true) {
+				// TODO: check due tasks
+				System.out.println("thread is checking");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					break;
+				}
+			}
+
+			System.out.println("thread is stopped");
+		}
 	}
 
 }

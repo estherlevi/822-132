@@ -9,7 +9,7 @@ import java.util.List;
 public class Schedualler {
 
 	private List<Task> tasks = new ArrayList<Task>();
-	private SchedulerThread thread = new SchedulerThread();
+	private SchedulerThread thread;
 
 	public void addTask(Task task) {
 		this.tasks.add(task);
@@ -67,18 +67,19 @@ public class Schedualler {
 	}
 
 	public void startMonitoringTasks() {
+		this.thread = new SchedulerThread();
 		thread.start();
 	}
 
 	public void stopMonitoringTasks() {
-		thread.interrupt();
+		this.thread.interrupt();
 	}
 
 	private class SchedulerThread extends Thread {
 		@Override
 		public void run() {
 			while (true) {
-				// TODO: check due tasks
+				Schedualler.this.checkDeadlines();
 				System.out.println("thread is checking");
 				try {
 					Thread.sleep(1000);
@@ -88,6 +89,16 @@ public class Schedualler {
 			}
 
 			System.out.println("thread is stopped");
+		}
+	}
+
+	private void checkDeadlines() {
+		LocalDateTime now = LocalDateTime.now();
+		for (Task task : tasks) {
+			if (task.getDeadline().isBefore(now) && !task.isAlertPopped()) {
+				System.out.println("===== ALERT for due task !!! " + task);
+				task.setAlertPopped(true);
+			}
 		}
 	}
 

@@ -12,6 +12,9 @@ public class Schedualler {
 	private SchedulerThread thread;
 
 	public void addTask(Task task) {
+		if (task.getDeadline().isBefore(LocalDateTime.now())) {
+			throw new RuntimeException("you can't add tasks for the past");
+		}
 		this.tasks.add(task);
 	}
 
@@ -80,7 +83,7 @@ public class Schedualler {
 		public void run() {
 			while (true) {
 				Schedualler.this.checkDeadlines();
-				System.out.println("thread is checking");
+//				System.out.println("thread is checking");
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -96,8 +99,8 @@ public class Schedualler {
 		LocalDateTime now = LocalDateTime.now();
 		for (Task task : tasks) {
 			if (task.getDeadline().isBefore(now) && !task.isAlertPopped()) {
-				System.out.println("===== ALERT for due task !!! " + task);
 				task.setAlertPopped(true);
+				System.out.println("===== ALERT for due task !!! " + task);
 			}
 		}
 	}

@@ -3,7 +3,7 @@ package app.core;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task {
+public class Task implements Comparable<Task> {
 
 	public final int id;
 	private String description;
@@ -74,6 +74,11 @@ public class Task {
 		}
 		Task other = (Task) obj;
 		return id == other.id;
+	}
+
+	@Override
+	public int compareTo(Task other) {
+		return this.deadline.compareTo(other.deadline);
 	}
 
 }

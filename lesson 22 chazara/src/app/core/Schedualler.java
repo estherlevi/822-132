@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Schedualler {
 
-	private List<Task> tasks = new ArrayList<Task>();
+	private Set<Task> tasks = new TreeSet<Task>();
 	private SchedulerThread thread;
 
 	public void addTask(Task task) {
@@ -47,7 +49,12 @@ public class Schedualler {
 		return null;
 	}
 
-	public List<Task> getAllTasks() {
+	public Task getLastTask() {
+		List<Task> list = new ArrayList<Task>(this.tasks);
+		return list.get(list.size() - 1);
+	}
+
+	public Set<Task> getAllTasks() {
 		return this.tasks;
 	}
 

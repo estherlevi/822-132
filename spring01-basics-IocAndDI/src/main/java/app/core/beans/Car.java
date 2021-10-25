@@ -17,6 +17,14 @@ public class Car {
 		System.out.println("Car created");
 	}
 
+	public Engine getEngine() {
+		return engine;
+	}
+
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
+
 	public void start() {
 		System.out.println("car is starting");
 		this.engine.start();
